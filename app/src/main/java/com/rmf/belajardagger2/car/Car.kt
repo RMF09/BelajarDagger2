@@ -1,4 +1,4 @@
-package com.rmf.belajardagger2
+package com.rmf.belajardagger2.car
 
 import android.util.Log
 import javax.inject.Inject
@@ -14,9 +14,14 @@ class Car @Inject constructor(private var engine: Engine, private var wheels: Wh
     fun enableRemote(remote: Remote){
         remote.setListener(this)
     }
+
     @Inject
     fun drive(){
+        engine.start()
         Log.d(TAG, "drive...")
     }
+
+
+
 
 }
