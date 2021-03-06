@@ -4,15 +4,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.rmf.belajardagger2.car.Car
 import com.rmf.belajardagger2.dagger.CarComponent
+import com.rmf.belajardagger2.dagger.DaggerCarComponent
+import com.rmf.belajardagger2.dagger.DieselEngineModule
 import javax.inject.Inject
 
-//Part6 PROVIDING INTERFACES WITH @BINDS
+//Part7 INJECT VARIABLES INTO OUR DEPEDENCY AT RUNTIME
 /**
- * we will learn how and why we should use @Binds instead of @Provides
- * to provide implementations for interfaces from our modules.
- * Binds methods are more concise because they are declared as abstract methods without a body,
- * and they are more efficient because Dagger doesn’t have to invoke them or even instantiate
- * their containing module.
+ * we will learn how to use stateful modules to inject variables
+ * into our dependency graph at run-time. For this, we have to add a constructor
+ * to our module and manually set it on the Component Builder with the required parameters.
+ * DieselEngine Implementation
  */
 
 class MainActivity : AppCompatActivity() {
@@ -23,7 +24,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val carComponent: CarComponent = DaggerCarComponent.create()
+        val carComponent: CarComponent =
+                DaggerCarComponent.builder()
+                        .dieselEngineModule(DieselEngineModule(100))
+                        .build()
+
         carComponent.inject(this)
     }
 }

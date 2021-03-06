@@ -4,9 +4,12 @@ import com.rmf.belajardagger2.car.DieselEngine
 import com.rmf.belajardagger2.car.Engine
 import dagger.Binds
 import dagger.Module
+import dagger.Provides
 
 @Module
-abstract class DieselEngineModule {
-    @Binds
-    abstract fun bindEngine(engine: DieselEngine) : Engine
+class DieselEngineModule(private var horsePower: Int) {
+    @Provides
+    fun provideEngine() : Engine{
+        return DieselEngine(horsePower)
+    }
 }
