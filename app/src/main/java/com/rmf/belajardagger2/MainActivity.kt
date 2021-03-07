@@ -8,12 +8,12 @@ import com.rmf.belajardagger2.dagger.DaggerCarComponent
 import com.rmf.belajardagger2.dagger.DieselEngineModule
 import javax.inject.Inject
 
-//Part7 INJECT VARIABLES INTO OUR DEPEDENCY AT RUNTIME
+//Part8 Component Builder, BindInstance
 /**
- * we will learn how to use stateful modules to inject variables
- * into our dependency graph at run-time. For this, we have to add a constructor
- * to our module and manually set it on the Component Builder with the required parameters.
- * DieselEngine Implementation
+ * In part 8 of the Dagger 2 tutorial, we will learn how to use @BindsInstance to bind
+ * variables to our dependency graph at runtime as an alternative to providing them from
+ * a stateful module. For this, we have to declare our own @Component.Builder.
+To distinguish between multiple bindings from the same type, we will use the @Named qualifier.
  */
 
 class MainActivity : AppCompatActivity() {
@@ -26,7 +26,8 @@ class MainActivity : AppCompatActivity() {
 
         val carComponent: CarComponent =
                 DaggerCarComponent.builder()
-                        .dieselEngineModule(DieselEngineModule(100))
+                        .horsePower(150)
+                        .engineCapacity(1000)
                         .build()
 
         carComponent.inject(this)
