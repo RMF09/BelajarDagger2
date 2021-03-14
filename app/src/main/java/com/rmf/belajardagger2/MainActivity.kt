@@ -10,15 +10,17 @@ import javax.inject.Inject
 
 //Part8 Component Builder, BindInstance
 /**
- * In part 8 of the Dagger 2 tutorial, we will learn how to use @BindsInstance to bind
- * variables to our dependency graph at runtime as an alternative to providing them from
- * a stateful module. For this, we have to declare our own @Component.Builder.
-To distinguish between multiple bindings from the same type, we will use the @Named qualifier.
+ * In part 10 of the Dagger 2, we will learn how to use the @Singleton scope annotation
+ * to tell dagger to only create a single instance of an object and reuse it within the
+ * same component. Internally, Dagger wraps the objects Factory into a DoubleCheck Provider,
+ * which caches the instance and uses double checked locking to return it in a thread safe and
+ * efficient way.
  */
 
 class MainActivity : AppCompatActivity() {
 
-    @Inject lateinit var car: Car
+    @Inject lateinit var car1: Car
+    @Inject lateinit var car2: Car
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
