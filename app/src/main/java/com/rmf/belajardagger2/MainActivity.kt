@@ -7,7 +7,7 @@ import com.rmf.belajardagger2.dagger.ActivityComponent
 import com.rmf.belajardagger2.dagger.DieselEngineModule
 import javax.inject.Inject
 /**
- * In part 13 Subcomponent Builder
+ * In part 14 component Factory
  */
 
 class MainActivity : AppCompatActivity() {
@@ -22,10 +22,8 @@ class MainActivity : AppCompatActivity() {
         val activityComponent: ActivityComponent =
             (application as ExampleApp)
                 .getAppComponent()
-                .getActivityComponentBuilder()
-                .horsePower(150)
-                .engineCapacity(1500)
-                .build()
+                .getActivityComponentFactory()
+                .create(160,1700)
 
 
         activityComponent.inject(this)
