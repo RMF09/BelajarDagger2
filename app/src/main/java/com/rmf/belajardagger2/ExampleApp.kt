@@ -1,21 +1,18 @@
 package com.rmf.belajardagger2
 
 import android.app.Application
-import com.rmf.belajardagger2.dagger.CarComponent
-import com.rmf.belajardagger2.dagger.DaggerCarComponent
+import com.rmf.belajardagger2.dagger.AppComponent
+import com.rmf.belajardagger2.dagger.DaggerAppComponent
 
 class ExampleApp: Application() {
-    private lateinit var component: CarComponent
+    private lateinit var component: AppComponent
 
     override fun onCreate() {
         super.onCreate()
-        component = DaggerCarComponent.builder()
-                .engineCapacity(1000)
-                .horsePower(500)
-                .build()
+        component = DaggerAppComponent.create()
     }
 
-    fun getAppComponent(): CarComponent{
+    fun getAppComponent(): AppComponent{
         return component
     }
 }

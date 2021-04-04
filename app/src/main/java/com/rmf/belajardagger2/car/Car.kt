@@ -1,9 +1,10 @@
 package com.rmf.belajardagger2.car
 
 import android.util.Log
+import com.rmf.belajardagger2.dagger.PerActivity
 import javax.inject.Inject
 
-
+@PerActivity
 class Car @Inject constructor(private var driver: Driver,private var engine: Engine, private var wheels: Wheels) {
 
     companion object{
@@ -15,7 +16,6 @@ class Car @Inject constructor(private var driver: Driver,private var engine: Eng
         remote.setListener(this)
     }
 
-    @Inject
     fun drive(){
         engine.start()
         Log.d(TAG, "$driver drives $this")
