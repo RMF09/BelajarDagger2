@@ -4,20 +4,20 @@ import com.rmf.belajardagger2.MainActivity
 import com.rmf.belajardagger2.car.Car
 import dagger.BindsInstance
 import dagger.Component
+import dagger.Subcomponent
 import javax.inject.Named
 
 //The Injector
 @PerActivity
-@Component(
-    dependencies = [AppComponent::class],
-    modules = [WheelsModule::class, PetrolEngineModule::class]
+@Subcomponent(
+    modules = [WheelsModule::class, DieselEngineModule::class]
 )
 interface ActivityComponent {
 
     fun getCar(): Car
     fun inject(mainActivity: MainActivity)
 
-    @Component.Builder
+   /* @Component.Builder
     interface Builder {
 
         @BindsInstance
@@ -28,5 +28,5 @@ interface ActivityComponent {
 
         fun appComponent(appComponent: AppComponent): Builder
         fun build(): ActivityComponent
-    }
+    }*/
 }

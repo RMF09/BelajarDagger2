@@ -20,8 +20,4 @@ class Car @Inject constructor(private var driver: Driver,private var engine: Eng
         engine.start()
         Log.d(TAG, "$driver drives $this")
     }
-
-
-
-
 }

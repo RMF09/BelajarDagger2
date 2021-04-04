@@ -4,13 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.rmf.belajardagger2.car.Car
 import com.rmf.belajardagger2.dagger.ActivityComponent
-import com.rmf.belajardagger2.dagger.DaggerActivityComponent
-import com.rmf.belajardagger2.dagger.DaggerAppComponent
+import com.rmf.belajardagger2.dagger.DieselEngineModule
 import javax.inject.Inject
-
-//Part8 Component Builder, BindInstance
 /**
- * In part 11 Custom Scope and Custom Depedencies
+ * In part 12 Subcomponent
  */
 
 class MainActivity : AppCompatActivity() {
@@ -23,12 +20,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val activityComponent: ActivityComponent =
-            DaggerActivityComponent
-                .builder()
-                .horsePower(120)
-                .engineCapacity(1000)
-                .appComponent((application as ExampleApp).getAppComponent())
-                .build()
+            (application as ExampleApp).getAppComponent()
+                .getActivityComponent(DieselEngineModule(120))
 
         activityComponent.inject(this)
 
