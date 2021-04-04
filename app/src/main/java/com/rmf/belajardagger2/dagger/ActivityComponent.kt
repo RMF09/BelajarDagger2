@@ -10,14 +10,14 @@ import javax.inject.Named
 //The Injector
 @PerActivity
 @Subcomponent(
-    modules = [WheelsModule::class, DieselEngineModule::class]
+    modules = [WheelsModule::class, PetrolEngineModule::class]
 )
 interface ActivityComponent {
 
     fun getCar(): Car
     fun inject(mainActivity: MainActivity)
 
-   /* @Component.Builder
+    @Subcomponent.Builder
     interface Builder {
 
         @BindsInstance
@@ -26,7 +26,6 @@ interface ActivityComponent {
         @BindsInstance
         fun engineCapacity(@Named("engine capacity") engineCapacity: Int): Builder
 
-        fun appComponent(appComponent: AppComponent): Builder
         fun build(): ActivityComponent
-    }*/
+    }
 }
